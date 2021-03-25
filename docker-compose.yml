@@ -1,0 +1,35 @@
+version: '3.2'
+services:
+  zoo:
+    image: confluentinc/cp-zookeeper
+    restart: always
+    container_name: zoo
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOO_MY_ID=1
+      - ZOO_SERVERS=2181
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: confluentinc/cp-kafka
+    hostname: kafka
+    container_name: kafka
+    depends_on:
+      - zoo
+    ports:
+      - "9094:9092"
+      - "9093:9093"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zoo:2181
+      - KAFKA_INTER_BROKER_LISTENER_NAME=EXTERNAL
+      - KAFKA_ADVERTISED_HOST_NAME=localhost
+      - KAFKA_LISTENERS=EXTERNAL://:9094,INTERNAL://:9093
+      - KAFKA_ADVERTISED_LISTENERS=EXTERNAL://localhost:9094
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=EXTERNAL:PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS=1
