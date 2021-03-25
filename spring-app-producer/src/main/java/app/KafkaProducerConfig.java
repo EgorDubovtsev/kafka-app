@@ -1,6 +1,7 @@
 package app;
 
 import app.entity.Order;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -15,6 +16,7 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Configuration
 public class KafkaProducerConfig {
@@ -39,5 +41,13 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
+    }
+    @Bean
+    public ObjectMapper objectMapper(){
+        return new ObjectMapper();
+    }
+    @Bean
+    public Random random(){
+        return new Random();
     }
 }
