@@ -1,4 +1,4 @@
-package app;
+package app.config;
 
 import app.entity.Order;
 import com.fasterxml.jackson.databind.ObjectMapper;

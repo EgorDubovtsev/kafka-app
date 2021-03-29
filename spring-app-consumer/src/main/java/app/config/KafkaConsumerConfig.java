@@ -1,4 +1,4 @@
-package app;
+package app.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

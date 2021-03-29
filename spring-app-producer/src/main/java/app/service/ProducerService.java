@@ -1,4 +1,4 @@
-package app;
+package app.service;
 
 import app.entity.Order;
 import com.fasterxml.jackson.core.JsonProcessingException;
