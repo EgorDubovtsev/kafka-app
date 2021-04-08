@@ -23,12 +23,4 @@
         </plugins>
     </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-    </dependencies>
-
 </project>
